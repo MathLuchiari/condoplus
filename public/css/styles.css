@@ -1,0 +1,35 @@
+.form_input--icon-eye {
+  pointer-events: all !important;
+  cursor: pointer;
+}
+.form_input--icon-eye--inactive {
+  visibility: hidden;
+}
+.form_input--icon-eye--active {
+  visibility: visible;
+}
+
+.login {
+  height: 100%;
+  background-size: cover;
+  background-image: linear-gradient(to right bottom, rgba(211, 214, 255, 0.6), rgba(126, 129, 217, 0.6)), url(../../images/bg_login.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login__form {
+  width: 25rem;
+  height: 22.5rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.login__form--title {
+  font-weight: bold;
+}
+
+/* hannah-busing-0V6DmTuJaIk-unsplash 1 */
