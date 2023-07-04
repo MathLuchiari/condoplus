@@ -46,7 +46,7 @@ Comandos para instalação dos pacotes utilizados no NodeJs (Este comando precis
 npm init
 ```
 
-## ☕ Usando <nome_do_projeto>
+## ☕ Usando CondoPlus
 
 Para usar Consoplus, acesse via Google Chrome o endereço localhost:(porta em que o servidor subiu, o padrão é 3000)
 
