@@ -1,3 +1,7 @@
+a:hover {
+  color: #F8F8F8;
+}
+
 .form_input--icon-eye {
   pointer-events: all !important;
   cursor: pointer;
@@ -7,6 +11,108 @@
 }
 .form_input--icon-eye--active {
   visibility: visible;
+}
+
+.sidenav {
+  height: 100%;
+  width: 12rem;
+  top: 0;
+  left: 0;
+  background-color: #1E1E1E;
+  overflow-x: hidden;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.sidenav ul {
+  list-style-type: none;
+  padding: 0;
+}
+.sidenav__item {
+  position: relative;
+  padding: 10px;
+  transition: 0.3s;
+}
+.sidenav__item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #6d77ff;
+  z-index: 10;
+  transform: translateX(-12rem);
+  transition: 0.3s;
+}
+.sidenav__item:hover::after {
+  transform: translateX(0);
+}
+
+.sidenav__link {
+  text-decoration: none;
+  color: #F8F8F8;
+  display: block;
+  transition: 0.3s;
+  z-index: 20;
+  position: relative;
+}
+.content {
+  margin-left: 12rem;
+  padding: 20px;
+}
+
+.menu-toggle__content {
+  padding: 0 0.5rem;
+  margin: 0.2rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-toggle {
+  margin: 1rem 0;
+  position: relative;
+  border-radius: 1rem;
+  width: 2.5rem;
+  height: 0.3rem;
+  background-color: white;
+  transition: 0.3s;
+}
+.menu-toggle::after, .menu-toggle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 1rem;
+  transition: 0.3s;
+}
+.menu-toggle::after {
+  transform: translateY(-0.7rem);
+}
+.menu-toggle::before {
+  transform: translateY(0.7rem);
+}
+.menu-toggle:hover {
+  transform: translateX(34px);
+  background-color: transparent;
+}
+.menu-toggle:hover::after, .menu-toggle:hover::before {
+  width: 75%;
+}
+.menu-toggle:hover::after {
+  transform: rotate(-45deg) translateY(-13px);
+}
+.menu-toggle:hover::before {
+  transform: rotate(45deg) translateY(13px);
+}
+
+.page-content {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .login {

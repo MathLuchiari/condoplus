@@ -18,11 +18,6 @@ const viewsPath = path.join(__dirname, '../../frontend/views')
 //Definição do caminho para a pasta que irá conter os layouts
 const layoutsPath = path.join(__dirname, '../../frontend/layouts')
 
-// SECTION Conectando com o banco de dados
-    connectionDB.connectDB()
-// !SECTION
-
-
 // SECTION Subindo o web server
     //Configurando a pasta puclic como static para o server
     app.use(express.static(publicDiretoryPath))
@@ -46,7 +41,26 @@ const layoutsPath = path.join(__dirname, '../../frontend/layouts')
     // app.get('/', function(req, res) { res.json({hello : 'world'});})
     routes(app)
 
-    app.listen(port);
+    // SECTION Conectando com o banco de dados
+    connectionDB.connectDB( ( connectionStatus ) => {
+        if( connectionStatus != null )
+            app.listen(port);
+
+            // connectionDB.runQuery({ 
+            //     sqlStatement: "SELECT * FROM A00 WHERE A00_CODIGO = @A00_CODIGO;",
+            //     queryParams: [
+            //         {
+            //             name: "A00_CODIGO",
+            //             value: "000001"
+            //         }
+            //     ],
+            //     callbackSuccess: ( aRows ) => {
+            //         console.log( aRows )
+            //     },
+            //     callbackError: null
+            // })
+    })
+    // !SECTION
 
     console.log('Message RESTful API server started on: ' + port);
 // !SECTION
