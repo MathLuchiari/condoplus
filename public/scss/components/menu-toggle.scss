@@ -1,9 +1,50 @@
-.menu-toggle__content {
+#menuToggleContainer {
     padding: 0 .5rem;
     margin: .2rem 0;
 
     display: flex;
     justify-content: flex-end;
+}
+
+.menu-toggle__container {
+    cursor: pointer;
+
+    &--expanded {
+        &:hover {
+            .menu-toggle::after {
+                transform: translateY(-.9rem);
+            }
+            
+            .menu-toggle::before {
+                transform: translateY(.9rem);
+            }
+        }
+    }
+    
+    &--shrunken {
+        &:hover {
+            .menu-toggle {
+                transform: translateX(32px);
+            }
+        }
+
+        .menu-toggle {
+            transform: translateX(36px);
+            background-color: transparent;
+        }
+
+        .menu-toggle::after, .menu-toggle::before {
+            width: 75%;
+        }
+
+        .menu-toggle::after {
+            transform: rotate(-45deg) translateY(-13px);
+        }
+
+        .menu-toggle::before {
+            transform: rotate(45deg) translateY(13px);
+        }
+    }
 }
 
 .menu-toggle {
@@ -37,22 +78,5 @@
     
     &::before {
         transform: translateY(.7rem);
-    }
-
-    &:hover {
-        transform: translateX(34px);
-        background-color: transparent;
-
-        &::after, &::before {
-            width: 75%;
-        }
-
-        &::after {
-            transform: rotate(-45deg) translateY(-13px);
-        }
-
-        &::before {
-            transform: rotate(45deg) translateY(13px);
-        }
     }
 }

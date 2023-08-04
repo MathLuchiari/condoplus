@@ -15,7 +15,6 @@ a:hover {
 
 .sidenav {
   height: 100%;
-  width: 12rem;
   top: 0;
   left: 0;
   background-color: #1E1E1E;
@@ -23,11 +22,39 @@ a:hover {
   padding-top: 10px;
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
+}
+.sidenav * {
+  transition: 0.3s;
 }
 .sidenav ul {
   list-style-type: none;
   padding: 0;
 }
+.sidenav--expanded {
+  width: 14rem;
+}
+.sidenav--expanded .sidenav__link--text {
+  display: block;
+}
+.sidenav--shrunken {
+  width: 4.6666666667rem;
+}
+.sidenav--shrunken #menuToggleContainer {
+  justify-content: center;
+}
+.sidenav--shrunken .sidenav__link {
+  justify-items: center;
+}
+.sidenav--shrunken .sidenav__link--text {
+  transform: translateX(50rem);
+  position: absolute;
+}
+.sidenav--shrunken .sidenav__item {
+  display: flex;
+  justify-content: center;
+}
+
 .sidenav__item {
   position: relative;
   padding: 10px;
@@ -42,7 +69,7 @@ a:hover {
   width: 100%;
   background-color: #6d77ff;
   z-index: 10;
-  transform: translateX(-12rem);
+  transform: translateX(-14rem);
   transition: 0.3s;
 }
 .sidenav__item:hover::after {
@@ -52,21 +79,53 @@ a:hover {
 .sidenav__link {
   text-decoration: none;
   color: #F8F8F8;
-  display: block;
   transition: 0.3s;
   z-index: 20;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
+.sidenav__link--icon {
+  font-size: 150%;
+}
+
 .content {
-  margin-left: 12rem;
+  margin-left: 14rem;
   padding: 20px;
 }
 
-.menu-toggle__content {
+#menuToggleContainer {
   padding: 0 0.5rem;
   margin: 0.2rem 0;
   display: flex;
   justify-content: flex-end;
+}
+
+.menu-toggle__container {
+  cursor: pointer;
+}
+.menu-toggle__container--expanded:hover .menu-toggle::after {
+  transform: translateY(-0.9rem);
+}
+.menu-toggle__container--expanded:hover .menu-toggle::before {
+  transform: translateY(0.9rem);
+}
+.menu-toggle__container--shrunken:hover .menu-toggle {
+  transform: translateX(32px);
+}
+.menu-toggle__container--shrunken .menu-toggle {
+  transform: translateX(36px);
+  background-color: transparent;
+}
+.menu-toggle__container--shrunken .menu-toggle::after, .menu-toggle__container--shrunken .menu-toggle::before {
+  width: 75%;
+}
+.menu-toggle__container--shrunken .menu-toggle::after {
+  transform: rotate(-45deg) translateY(-13px);
+}
+.menu-toggle__container--shrunken .menu-toggle::before {
+  transform: rotate(45deg) translateY(13px);
 }
 
 .menu-toggle {
@@ -93,19 +152,6 @@ a:hover {
 }
 .menu-toggle::before {
   transform: translateY(0.7rem);
-}
-.menu-toggle:hover {
-  transform: translateX(34px);
-  background-color: transparent;
-}
-.menu-toggle:hover::after, .menu-toggle:hover::before {
-  width: 75%;
-}
-.menu-toggle:hover::after {
-  transform: rotate(-45deg) translateY(-13px);
-}
-.menu-toggle:hover::before {
-  transform: rotate(45deg) translateY(13px);
 }
 
 .page-content {

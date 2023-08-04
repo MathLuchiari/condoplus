@@ -26,14 +26,31 @@
     </head>
     <body>
         <div class="page-content">
-            <nav class="sidenav">
-                <div class="menu-toggle__content">
-                    <div class="menu-toggle"></div>
+            <nav class="sidenav sidenav--expanded">
+                <div id="menuToggleContainer">
+                    <div class="menu-toggle__container menu-toggle__container--shrunken" onclick="toggleMenu()">
+                        <div class="menu-toggle"></div>
+                    </div>
                 </div>
                 <ul class="sidenav-list">
-                    <li class="sidenav__item"><a class="sidenav__link" href="#">Chat</a></li>
-                    <li class="sidenav__item"><a class="sidenav__link" href="#">Locação de Ambientes</a></li>
-                    <li class="sidenav__item"><a class="sidenav__link" href="#">Solicitação de Serviço</a></li>
+                    <li class="sidenav__item">
+                        <a class="sidenav__link" href="#">
+                            <i class="sidenav__link--icon far fa-comments"></i>
+                            <span class="sidenav__link--text">Chat</span>
+                        </a>
+                    </li>
+                    <li class="sidenav__item">
+                        <a class="sidenav__link" href="#">
+                            <i class="sidenav__link--icon far fa-calendar-check"></i>
+                            <span class="sidenav__link--text">Locação de Ambientes</span>
+                        </a>
+                    </li>
+                    <li class="sidenav__item">
+                        <a class="sidenav__link" href="#">
+                            <i class="sidenav__link--icon fas fa-screwdriver-wrench"></i>
+                            <span class="sidenav__link--text">Solicitação de Serviço</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
