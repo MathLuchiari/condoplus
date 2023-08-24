@@ -2,6 +2,7 @@
 
 const core = require('../utils/core.js');
 const connectionDB = require(`../src/api/services/connectionDB.js`)
+const {usuarios_deleteUsuario, usuarios_getUsuarios, usuarios_save} = require(`../src/api/controllers/usuarios.js`)
 const moment = require('moment');
 
 module.exports = function(app) {
@@ -114,6 +115,50 @@ module.exports = function(app) {
             res.render("index", {
                 page_title: 'index',
                 layout: 'index'
+            })
+        })
+    
+    app.route('/index/page_usuarios')
+        .get( (req, res) => {
+            res.render("usuarios", {
+                page_title: 'Usuários',
+                layout: 'index'
+            })
+        })
+    
+    app.route('/index/usuarios')
+        .get( (req, res) => {
+            const codUsuario = req.query.codUsuario;
+
+            usuarios_getUsuarios( codUsuario, ( aRows ) => {
+                res.json( aRows )
+            })
+        })
+        .post( (req, res) => {
+            usuarios_save( req.body, ( objRet ) => {
+                res.json(objRet)
+            })
+        })
+        .delete( (req, res) => {
+            const codUsuario = req.query.codUsuario;
+
+            usuarios_deleteUsuario( codUsuario, ( objRet ) => {
+                res.json(objRet)
+            })
+        })
+    
+    app.route('/index/grupos_usuarios')
+        .get( (req, res) => {            
+            connectionDB.runQuery({ 
+                sqlStatement: `
+                    SELECT A01_CODIGO
+                         , A01_DESCRI
+                      FROM A01 
+                `,
+                queryParams: [],
+                callbackSuccess: ( aRowsUPD, queryParams ) => {
+                    res.json( aRowsUPD )
+                }
             })
         })
 }

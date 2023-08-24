@@ -22,7 +22,7 @@
     }
 
     &--expanded {
-        width: $sidenav-width;
+        flex: 0 0 12%;
 
         .sidenav__link--text {
             display: block;
@@ -30,7 +30,7 @@
     }
     
     &--shrunken {
-        width: calc($sidenav-width/3);
+        flex: 0 0 4%;
 
         #menuToggleContainer {
             justify-content: center;
@@ -57,6 +57,8 @@
     position: relative;
     padding: 10px;
     transition: 0.3s;
+
+    cursor: pointer;
 
     &::after {
         content: "";
@@ -90,7 +92,7 @@
     gap: 1rem;
 
     &--icon {
-        font-size: 150%;
+        // font-size: 150%;
     }
 }
 

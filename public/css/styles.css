@@ -32,13 +32,13 @@ a:hover {
   padding: 0;
 }
 .sidenav--expanded {
-  width: 14rem;
+  flex: 0 0 12%;
 }
 .sidenav--expanded .sidenav__link--text {
   display: block;
 }
 .sidenav--shrunken {
-  width: 4.6666666667rem;
+  flex: 0 0 4%;
 }
 .sidenav--shrunken #menuToggleContainer {
   justify-content: center;
@@ -59,6 +59,7 @@ a:hover {
   position: relative;
   padding: 10px;
   transition: 0.3s;
+  cursor: pointer;
 }
 .sidenav__item::after {
   content: "";
@@ -86,10 +87,6 @@ a:hover {
   align-items: center;
   gap: 1rem;
 }
-.sidenav__link--icon {
-  font-size: 150%;
-}
-
 .content {
   margin-left: 14rem;
   padding: 20px;
@@ -152,6 +149,62 @@ a:hover {
 }
 .menu-toggle::before {
   transform: translateY(0.7rem);
+}
+
+.conteudo {
+  flex: 1;
+  padding: 1rem;
+}
+
+.page-divider {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.page-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-popUp-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3333333333);
+  z-index: 100;
+  transition: all 0.2s;
+}
+
+.page-popUp {
+  min-height: 10rem;
+  background-color: #F8F8F8;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+#popUpContent {
+  position: relative;
+}
+
+.iconClosePopUp {
+  position: absolute;
+  top: -0.8rem;
+  right: -0.5rem;
+}
+
+.container_buttons-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 .page-content {

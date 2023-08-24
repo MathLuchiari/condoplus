@@ -25,7 +25,6 @@ function validLoginForm() {
 function initLogin() {
     $('#btnLogin').on('click', () => {
         if (validLoginForm()) {
-            console.log('Login válido!')
             realizarLogin()
         } else {
             console.error('Login inválido!')
@@ -84,6 +83,5 @@ function realizarLogin() {
 
 
 $(document).ready( function () {
-    console.log('Okay')
     initLogin()
 });
