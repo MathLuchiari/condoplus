@@ -28,11 +28,11 @@ function usuarios_getUsuarios( codUsuario, callback ) {
 }
 
 function usuarios_save( oDados, callback ) {
-    const {codUsuario, nomeUsuario, emailUsuario, grupoUsuario} = oDados
+    const {acao, codUsuario, nomeUsuario, emailUsuario, grupoUsuario} = oDados
 
     let queryEmail = ''
 
-    if( codUsuario ) {
+    if( acao == 'A' ) {
         queryEmail = `
             SELECT A00_CODIGO
               FROM A00 
@@ -55,7 +55,7 @@ function usuarios_save( oDados, callback ) {
         ],
         callbackSuccess: ( aRowsUPD, queryParams ) => {
             if( aRowsUPD.length > 0 ) {
-                if( codUsuario ) {
+                if( acao == 'A' ) {
                     callback({
                         errorcode: '01',
                         message: 'Email já cadastrado! Não foi possível alterar!'
@@ -69,7 +69,7 @@ function usuarios_save( oDados, callback ) {
             } else {
                 let sql = '' 
                 
-                if( codUsuario ) {
+                if( acao == 'A' ) {
                     sql = `
                         UPDATE A00
                         SET A00_NOME = @A00_NOME
@@ -112,7 +112,7 @@ function usuarios_save( oDados, callback ) {
                         { name: "A00_LOGIN"  , value: emailUsuario },
                     ],
                     callbackSuccess: ( aRowsUPD, queryParams ) => {
-                        if( codUsuario ) {
+                        if( acao == 'A' ) {
                             callback({
                                 errorcode: '00',
                                 message: 'Usuário alterado com sucesso!'

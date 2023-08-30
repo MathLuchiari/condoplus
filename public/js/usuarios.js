@@ -72,7 +72,7 @@ function usuariosCreateGrid( aData ) {
 
         $("#gridUsuarios").jsGrid({
             width: "100%",
-            height: "100%",
+            height: "400px",
      
             inserting: false,
             sorting: true,
@@ -100,9 +100,11 @@ function usuariosCreateGrid( aData ) {
 }
 
 function usuarios_getGrupos() {
+    let params = `codUsuario=ALL`;
+
     var request = new XMLHttpRequest();
-    request.open('GET', '/index/grupos_usuarios', false); // O terceiro parâmetro "false" indica uma requisição síncrona
-    request.send();
+    request.open('GET', '/index/grupos_usuarios', false);
+    request.send(params);
 
     console.log(request)
 
@@ -139,7 +141,7 @@ function openIncluirUsuario() {
                         <i class="fas fa-xmark"></i>
                         &nbsp;Cancelar
                     </a>
-                    <a class="btn btn-success" onclick="usuarios_save()"> 
+                    <a class="btn btn-success" onclick="usuarios_save('I')"> 
                         <i class="far fa-floppy-disk"></i>
                         &nbsp;Salvar
                     </a>
@@ -188,7 +190,7 @@ function usuarios_openEdit( codUsuario ) {
                             <i class="fas fa-xmark"></i>
                             &nbsp;Cancelar
                         </a>
-                        <a class="btn btn-success" onclick="usuarios_save('${codUsuario}')"> 
+                        <a class="btn btn-success" onclick="usuarios_save('A', '${codUsuario}')"> 
                             <i class="far fa-floppy-disk"></i>
                             &nbsp;Salvar
                         </a>
@@ -217,13 +219,13 @@ function usuarios_openEdit( codUsuario ) {
     })
 }
 
-function usuarios_save( codUsuario ) {
+function usuarios_save( acao, codUsuario ) {
     if( validateRequired('#popUpContent') ) {
         let nomeUsuario = $('#nomeUsuario').val()
         let emailUsuario = $('#emailUsuario').val()
         let grupoUsuario = $('#grupoUsuario').val()
         
-        let params = `codUsuario=${codUsuario}&nomeUsuario=${nomeUsuario}&emailUsuario=${emailUsuario}&grupoUsuario=${grupoUsuario}`; // Formato: param1=value1&param2=value2
+        let params = `acao=${acao}&codUsuario=${codUsuario}&nomeUsuario=${nomeUsuario}&emailUsuario=${emailUsuario}&grupoUsuario=${grupoUsuario}`; // Formato: param1=value1&param2=value2
         let request = new XMLHttpRequest();
 
         request.open('POST', '/index/usuarios', false);

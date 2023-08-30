@@ -1,0 +1,32 @@
+<div class="page-header">
+    <h1>Chamados</h1>
+    <a class="btn btn-primary" onclick="chamados_openFicha('I')">
+        <i class="fas fa-plus"></i>
+        &nbsp;Chamado
+    </a>
+</div>
+
+<hr class="page-divider">
+
+<div class="col-md-12">
+    <div class="condoplus-panel">
+        <div class="col-md-2">      
+            <label class="control-label control-title" for="idChamado">ID Chamado</label>
+            <input type="text" id="idChamado" class="form-control">
+        </div>
+        <div class="col-md-2">      
+            <label class="control-label control-title" for="dataDe">Data De</label>
+            <input type="text" class="form-control datepicker">
+        </div>
+        <div class="col-md-2">      
+            <label class="control-label control-title" for="dataAte">Data Até</label>
+            <div class="datepicker" id="dataAte"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="gridChamados"></div>
+    </div>
+</div>

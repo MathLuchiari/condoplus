@@ -3,6 +3,8 @@
 const core = require('../utils/core.js');
 const connectionDB = require(`../src/api/services/connectionDB.js`)
 const {usuarios_deleteUsuario, usuarios_getUsuarios, usuarios_save} = require(`../src/api/controllers/usuarios.js`)
+const {gruposUsuarios_delete, gruposUsuarios_getGrupos, gruposUsuarios_save} = require(`../src/api/controllers/grupos_usuarios.js`)
+const {chamados_get, chamados_save, chamados_updateStatus, chamados_delete} = require(`../src/api/controllers/chamados.js`)
 const moment = require('moment');
 
 module.exports = function(app) {
@@ -125,6 +127,20 @@ module.exports = function(app) {
                 layout: 'index'
             })
         })
+    app.route('/index/page_grupos_usuarios')
+        .get( (req, res) => {
+            res.render("grupos_usuarios", {
+                page_title: 'Grupos de Usuários',
+                layout: 'index'
+            })
+        })
+    app.route('/index/page_chamados')
+        .get( (req, res) => {
+            res.render("chamados", {
+                page_title: 'Chamados',
+                layout: 'index'
+            })
+        })
     
     app.route('/index/usuarios')
         .get( (req, res) => {
@@ -148,17 +164,56 @@ module.exports = function(app) {
         })
     
     app.route('/index/grupos_usuarios')
-        .get( (req, res) => {            
-            connectionDB.runQuery({ 
-                sqlStatement: `
-                    SELECT A01_CODIGO
-                         , A01_DESCRI
-                      FROM A01 
-                `,
-                queryParams: [],
-                callbackSuccess: ( aRowsUPD, queryParams ) => {
-                    res.json( aRowsUPD )
-                }
+        .get( (req, res) => {      
+            const codGrupo = req.query.codGrupo; 
+            
+            gruposUsuarios_getGrupos( codGrupo, ( aRows ) => {
+                res.json( aRows )
+            })
+        })
+        .post( (req, res) => {
+            gruposUsuarios_save( req.body, ( objRet ) => {
+                res.json(objRet)
+            })
+        })
+        .delete( (req, res) => {
+            const codGrupo = req.query.codGrupo;
+
+            gruposUsuarios_delete( codGrupo, ( objRet ) => {
+                res.json(objRet)
+            })
+        })
+
+    app.route('/index/chamados')
+        .get( (req, res) => {      
+            const codChamado = req.query.codChamado; 
+            const dataDe = req.query.dataDe; 
+            const dataAte = req.query.dataAte; 
+            const status = req.query.status; 
+            const usuario = req.query.usuario; 
+            
+            chamados_get( codChamado, dataDe, dataAte, status, usuario, ( aRows ) => {
+                res.json( aRows )
+            })
+        })
+        .post( (req, res) => {
+            const acao = req.body.acao;
+    
+            if( acao == "I" || acao == "A" ) {
+                chamados_save( req.body, ( objRet ) => {
+                    res.json(objRet)
+                })
+            } else if( acao == "U" ) {
+                chamados_updateStatus( req.body, ( objRet ) => {
+                    res.json(objRet)
+                })
+            }
+        })
+        .delete( (req, res) => {
+            const codChamado = req.query.codChamado;
+
+            chamados_delete( codChamado, ( objRet ) => {
+                res.json(objRet)
             })
         })
 }
