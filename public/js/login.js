@@ -67,7 +67,10 @@ function realizarLogin() {
     .then(response => response.json())
     .then( (responseData, objResp) => {
         if( responseData.cod === 200 ) {
+            console.log(responseData)
             sessionStorage.setItem('codSessao', responseData.codSessao)
+            sessionStorage.setItem('codUsuario', responseData.codUsuario)
+            sessionStorage.setItem('codGrupo', responseData.codGrupo)
 
             window.location.href = window.location.href + 'index'
         } else {

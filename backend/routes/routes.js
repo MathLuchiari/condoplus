@@ -46,7 +46,7 @@ module.exports = function(app) {
                     if( contentResp.cod === 200 ) {
                         connectionDB.runQuery({ 
                             sqlStatement: `
-                                SELECT * 
+                                SELECT *
                                   FROM A02 A02
                                  WHERE A02.A02_CODIGO = (
                                     SELECT MAX(SUB_A02.A02_CODIGO) AS MAX_A02_CODIGO
@@ -59,12 +59,10 @@ module.exports = function(app) {
                             ],
                             callbackSuccess: ( aRowsCheckSessao ) => {
                                 if( aRowsCheckSessao.length > 0 && aRowsCheckSessao[0]["A02_ISACTIVE"] == 1 ) {
-                                    contentResp.codSessao = aRowsCheckSessao["A02_CODIGO"]
-                                    // res.render("index", {
-                                    //     page_title: 'index',
-                                    //     layout: 'index',
-                                    //     ...contentResp
-                                    // })
+                                    contentResp.codSessao = aRowsCheckSessao[0]["A02_CODIGO"]
+                                    contentResp.codUsuario = aRowsCheckSessao[0]["A02_CODA00"]
+                                    contentResp.codGrupo = aRows[0].A00_CODIGO
+
                                     res.json( contentResp )
                                 } else {
                                     connectionDB.runQuery({ 
@@ -92,11 +90,9 @@ module.exports = function(app) {
                                         ],
                                         callbackSuccess: ( aRowsUPD, queryParams ) => {
                                             contentResp.codSessao = queryParams.find( param => param.name == "A02_CODIGO" ).value
-                                            // res.render("index", {
-                                            //     page_title: 'index',
-                                            //     layout: 'index',
-                                            //     ...contentResp
-                                            // })
+                                            contentResp.codUsuario = queryParams.find( param => param.name == "A02_CODA00" ).value
+                                            contentResp.codGrupo = aRows[0].A00_CODIGO
+
                                             res.json( contentResp )
                                         }
                                     })
@@ -113,7 +109,6 @@ module.exports = function(app) {
 
     app.route('/index')
         .get( (req, res) => {
-            console.log('Teste')
             res.render("index", {
                 page_title: 'index',
                 layout: 'index'
@@ -191,7 +186,7 @@ module.exports = function(app) {
             const dataAte = req.query.dataAte; 
             const status = req.query.status; 
             const usuario = req.query.usuario; 
-            
+
             chamados_get( codChamado, dataDe, dataAte, status, usuario, ( aRows ) => {
                 res.json( aRows )
             })

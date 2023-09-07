@@ -77,3 +77,58 @@ function validateRequired( container ) {
 
     return valid
 }
+
+function isEmpty(strOrObj) {
+
+    var result = strIsVoid(strOrObj); /* string */
+
+    if (!result) {
+        result = objIsVoid(strOrObj); /* object ou array  */
+    }
+
+    if(strOrObj != null && typeof strOrObj == 'object') {
+
+        if(typeof strOrObj.exec == 'function' && typeof strOrObj.flags == 'string') { /* regex */
+            result = false;
+        }
+    }
+
+    return result;
+}
+
+function strIsVoid(str) {
+
+    var isVoid = false;
+
+    if (str == null) { /* null == undefined */
+        isVoid = true;
+    }
+    else if (typeof str === 'string' && str.trim() == '') {
+        isVoid = true;
+    }
+
+    return isVoid;
+}
+
+function objIsVoid(obj) {
+
+    var isVoid = false;
+
+    if (obj == null) { /* null == undefined */
+        isVoid = true;
+    }
+    else if (Array.isArray(obj) && obj.length == 0) {
+        isVoid = true;
+    }
+    else if (typeof obj === 'object') {
+
+        try {
+            if (JSON.stringify(obj) == '{}') {
+                isVoid = true;
+            }
+        }
+        catch (err) { }
+    }
+
+    return isVoid;
+}

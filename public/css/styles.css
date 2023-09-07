@@ -214,6 +214,7 @@ a:hover {
   border: solid 1px #c6c6c6;
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .page-content {
