@@ -49,6 +49,7 @@
     position: absolute;
     top: -.8rem;
     right: -.5rem;
+    cursor: pointer;
 }
 
 .container_buttons-form {
@@ -65,4 +66,5 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    justify-content: space-between;
 }

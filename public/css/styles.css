@@ -199,6 +199,7 @@ a:hover {
   position: absolute;
   top: -0.8rem;
   right: -0.5rem;
+  cursor: pointer;
 }
 
 .container_buttons-form {
@@ -215,6 +216,7 @@ a:hover {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .page-content {

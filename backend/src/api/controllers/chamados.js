@@ -42,11 +42,6 @@ function chamados_save(oDados, callback) {
         descricaoChamado,
     } = oDados
 
-    console.log('tituloChamado: ' + tituloChamado)
-    console.log('descricaoChamado: ' + descricaoChamado)
-    console.log('tituloChamado convertido: ' + atob(tituloChamado))
-    console.log('descricaoChamado convertido: ' + atob(descricaoChamado))
-
     let sql = '' 
                 
     if( acao == 'A' ) {

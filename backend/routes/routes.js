@@ -5,6 +5,7 @@ const connectionDB = require(`../src/api/services/connectionDB.js`)
 const {usuarios_deleteUsuario, usuarios_getUsuarios, usuarios_save} = require(`../src/api/controllers/usuarios.js`)
 const {gruposUsuarios_delete, gruposUsuarios_getGrupos, gruposUsuarios_save} = require(`../src/api/controllers/grupos_usuarios.js`)
 const {chamados_get, chamados_save, chamados_updateStatus, chamados_delete} = require(`../src/api/controllers/chamados.js`)
+const {portalAvisos_get, portalAvisos_save, portalAvisos_delete} = require(`../src/api/controllers/portal_avisos.js`)
 const moment = require('moment');
 
 module.exports = function(app) {
@@ -136,6 +137,13 @@ module.exports = function(app) {
                 layout: 'index'
             })
         })
+    app.route('/index/page_portal_avisos')
+        .get( (req, res) => {
+            res.render("portal_avisos", {
+                page_title: 'Portal Avisos',
+                layout: 'index'
+            })
+        })
     
     app.route('/index/usuarios')
         .get( (req, res) => {
@@ -208,6 +216,30 @@ module.exports = function(app) {
             const codChamado = req.query.codChamado;
 
             chamados_delete( codChamado, ( objRet ) => {
+                res.json(objRet)
+            })
+        })
+    
+    app.route('/index/portal_avisos')
+        .get( (req, res) => {
+            const codAviso = req.query.codAviso; 
+            const dataDe = req.query.dataDe; 
+            const dataAte = req.query.dataAte; 
+            const tipo = req.query.tipo; 
+
+            portalAvisos_get( codAviso, dataDe, dataAte, tipo, ( aRows ) => {
+                res.json( aRows )
+            })
+        })
+        .post( (req, res) => {    
+            portalAvisos_save( req.body, ( objRet ) => {
+                res.json(objRet)
+            })
+        })
+        .delete( (req, res) => {
+            const codAviso = req.query.codAviso;
+
+            portalAvisos_delete( codAviso, ( objRet ) => {
                 res.json(objRet)
             })
         })
