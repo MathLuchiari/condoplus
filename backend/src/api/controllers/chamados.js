@@ -63,7 +63,7 @@ function chamados_save(oDados, callback) {
                 A03_STATUS
             )
             VALUES (
-                (SELECT REPLACE(STR(MAX(A03_CODIGO) + 1, 10), SPACE(1), '0') FROM A03),
+                ISNULL((SELECT REPLACE(STR(MAX(A03_CODIGO) + 1, 10), SPACE(1), '0') FROM A03), '0000000001'),
                 @A03_CODA00,
                 @A03_TITULO,
                 @A03_DATAINC,

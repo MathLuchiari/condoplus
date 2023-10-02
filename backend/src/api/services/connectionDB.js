@@ -9,12 +9,12 @@ const objConnectionDB = {
 async function connect( callback ) {
     var Connection = tedious.Connection;  
     var config = {  
-        server: '127.0.0.1',  //update me
+        server: 'condoplus.ccmckeowlxiq.us-east-1.rds.amazonaws.com',  //update me
         authentication: {
             type: 'default',
             options: {
-                userName: 'SA', //update me
-                password: 'admin123!'  //update me
+                userName: 'admin', //update me
+                password: 'xii6UuTsFUTotHCk21cB'  //update me
             }
         },
         options: {

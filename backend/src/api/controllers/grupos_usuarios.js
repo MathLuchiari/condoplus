@@ -75,7 +75,7 @@ function gruposUsuarios_save( oDados, callback ) {
                              , A01_DESCRI
                          )    
                          VALUES (
-                               (SELECT REPLACE(STR(MAX(A01_CODIGO) + 1, 6), SPACE(1), '0') FROM A01)
+                               ISNULL((SELECT REPLACE(STR(MAX(SUB.A01_CODIGO) + 1, 6), SPACE(1), '0') FROM A01 SUB), '000001')
                              , @A01_DESCRI
                          );
                     `

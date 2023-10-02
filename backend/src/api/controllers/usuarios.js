@@ -89,7 +89,7 @@ function usuarios_save( oDados, callback ) {
                              , A00_LOGIN
                          )    
                          VALUES (
-                               (SELECT REPLACE(STR(MAX(A00_CODIGO) + 1, 6), SPACE(1), '0') FROM A00)
+                               ISNULL((SELECT REPLACE(STR(MAX(A00_CODIGO) + 1, 6), SPACE(1), '0') FROM A00), '0000001')
                              , @A00_NOME
                              , @A00_EMAIL
                              , @A00_BLOQ

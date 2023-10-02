@@ -67,7 +67,7 @@ function portalAvisos_save( oDados, callback ) {
                 A04_HORA
             )
             VALUES (
-                (SELECT REPLACE(STR(MAX(A04_CODIGO) + 1, 10), SPACE(1), '0') FROM A04),
+                ISNULL((SELECT REPLACE(STR(MAX(A04_CODIGO) + 1, 10), SPACE(1), '0') FROM A04), '0000000001'),
                 @A04_CODA00,
                 @A04_TITULO,
                 @A04_DESCRICAO,
