@@ -9,7 +9,7 @@ function portalAvisos_init() {
 }
 
 function portalAvisos_publicar( acao="I", codAviso="ALL" ) {
-    if( validateRequired('#formPubliAviso') ) {
+    if( validateRequired('#popUpContent') ) {
         let titulo = btoa($('#tituloAviso').val())
         let descricao = btoa($('#descricaoAviso').val())
         let tipo = $('#tipoAviso').val()
@@ -115,15 +115,15 @@ function portalAvisos_openFicha( acao, codAviso ) {
     let htmlPopUp = `
         <div class="col-md-12">
             <label class="control-label control-title" for="tituloAviso">Título</label>
-            <input type="text" id="tituloAviso" class="form-control">
+            <input type="text" id="tituloAviso" class="form-control" required />
         </div>
         <div class="col-md-12">      
             <label class="control-label control-title" for="descricaoAviso">Descrição</label>
-            <textarea type="text" class="form-control" id="descricaoAviso"></textarea>
+            <textarea type="text" class="form-control" id="descricaoAviso" required></textarea>
         </div>
         <div class="col-md-2">
             <label class="control-label control-title" for="tipoAviso">Tipo</label>
-            <select type="text" id="tipoAviso" class="form-control">
+            <select type="text" id="tipoAviso" class="form-control" required>
                 <option value="N" selected> Normal </option>
                 <option value="U"> Urgente </option>
             </select>
@@ -158,7 +158,8 @@ function portalAvisos_excluir( codAviso ) {
 
             request.onload = function() {
                 if (request.status === 200) {
-                    toastr.success(request.response.message)
+                    // toastr.success(request.response.message)
+                    toastr.success('Aviso excluído com sucesso!')
 
                     portalAvisos_createGrid()
                 } else {

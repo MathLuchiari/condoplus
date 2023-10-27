@@ -100,10 +100,10 @@ function usuariosCreateGrid( aData ) {
 }
 
 function usuarios_getGrupos() {
-    let params = `codUsuario=ALL`;
+    let params = `codGrupo=ALL`;
 
     var request = new XMLHttpRequest();
-    request.open('GET', '/index/grupos_usuarios', false);
+    request.open('GET', `/index/grupos_usuarios?${params}`, false);
     request.send(params);
 
     console.log(request)

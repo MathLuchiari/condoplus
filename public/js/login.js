@@ -74,7 +74,13 @@ function realizarLogin() {
 
             window.location.href = window.location.href + 'index'
         } else {
-            console.log('Erro')
+            toastr.warning('Login ou senha inválidos!')
+
+            $('#txtLogin').removeClass('is-valid')
+            $('#txtPassword').removeClass('is-valid')
+            
+            $('#txtLogin').addClass('is-invalid')
+            $('#txtPassword').addClass('is-invalid')
         }
     })
     .catch(error => {

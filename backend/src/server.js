@@ -7,7 +7,7 @@ const routes = require('../routes/routes');
 const connectionDB = require(`./api/services/connectionDB`)
 
 let app = express()
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 80;
 
 //Definição do caminho para a pasta public
 const publicDiretoryPath = path.join(__dirname, '../../public')

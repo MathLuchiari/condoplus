@@ -25,15 +25,21 @@
     z-index: 100;
 
     transition: all .2s;
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    padding: 5rem;
 }
 
 .page-popUp {
     min-height: 10rem;
     background-color: $color-white;
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);  
+    // position: absolute;
+    // bottom: 20%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);  
 
     transition: all .2s;
 
