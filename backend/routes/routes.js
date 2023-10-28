@@ -62,7 +62,7 @@ module.exports = function(app) {
                                 if( aRowsCheckSessao.length > 0 && aRowsCheckSessao[0]["A02_ISACTIVE"] == 1 ) {
                                     contentResp.codSessao = aRowsCheckSessao[0]["A02_CODIGO"]
                                     contentResp.codUsuario = aRowsCheckSessao[0]["A02_CODA00"]
-                                    contentResp.codGrupo = aRows[0].A00_CODIGO
+                                    contentResp.codGrupo = aRows[0].A00_GRUPO
 
                                     res.json( contentResp )
                                 } else {
@@ -92,7 +92,7 @@ module.exports = function(app) {
                                         callbackSuccess: ( aRowsUPD, queryParams ) => {
                                             contentResp.codSessao = queryParams.find( param => param.name == "A02_CODIGO" ).value
                                             contentResp.codUsuario = queryParams.find( param => param.name == "A02_CODA00" ).value
-                                            contentResp.codGrupo = aRows[0].A00_CODIGO
+                                            contentResp.codGrupo = aRows[0].A00_GRUPO
 
                                             res.json( contentResp )
                                         }
